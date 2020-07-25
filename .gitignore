@@ -1,3 +1,8 @@
+#Custom
+*.db
+migrations/
+todo.txt
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
