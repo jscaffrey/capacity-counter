@@ -1,5 +1,5 @@
 #Home page route
-from flask import render_template, request, jsonify, url_for
+from flask import render_template, request, jsonify, url_for, redirect
 from app import app, db
 from app.models import Location, OccupancyOverTime
 
@@ -32,6 +32,17 @@ def decrement():
     db.session.commit()
 
     return str(location.occupancy)
+
+@app.route('/reset')
+def reset():
+    location_id = request.args.get("id", 1)
+    location = Location.query.filter_by(id=location_id).first()
+    
+    location.occupancy = 0
+    
+    db.session.commit()
+
+    return redirect(url_for('index'))
 
 @app.route('/location')
 def location():

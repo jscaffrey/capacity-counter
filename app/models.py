@@ -1,6 +1,6 @@
 from app import db
 import click
-from flask.cli import with_context
+from flask.cli import with_appcontext
 
 class Location(db.Model):
     id = db.Column(db.Integer, primary_key=True) 
@@ -25,8 +25,6 @@ class OccupancyOverTime(db.Model):
 @click.option('--description', prompt=False)
 @with_appcontext
 def create_admin(name, capacity, description):
-    if type(capacity) = int:
-        capacity = int(capacity)
     if description is None:
         description = ""
     location = Location(name=name, capacity=capacity,\
