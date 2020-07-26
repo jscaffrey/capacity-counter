@@ -1,4 +1,19 @@
+/* Typography */
+h1 {
+  margin-bottom: 4rem;
+}
+/* Layout */
 .center-align {
   padding: 3rem 1.5rem;
   text-align: center;
 }
+.counter-panel a.btn {
+  color:white!important;
+}
+.inner-panel {
+  margin: 20px;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+}
+

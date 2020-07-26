@@ -5,13 +5,15 @@
 <div class="col-md-6 offset-md-3">
   <h1>{{ location.name }}</h1>
   <a id="increment" class="btn btn-primary btn-lg btn-block" role="button">
-      <i class="fas fa-chevron-up" aria-hidden="true"></i>
+      &#9650; 
       <span class="sr-only">Increase</span>
   </a>
-  <h2 id="occupancy">{{ location.occupancy }}</h2>
-  <h3 class="h5">out of {{ location.capacity }}</h3>
+  <div class="inner-panel">
+      <h2 id="occupancy">{{ location.occupancy }}</h2>
+      <h3 class="h5">out of {{ location.capacity }}</h3>
+  </div>
   <a id="decrement" class="btn btn-primary btn-lg btn-block" role="button">
-      <i class="fas fa-chevron-down" aria-hidden="true"></i>
+      &#9660;
       <span class="sr-only">Decrease</span>
   </a>
 </div>
