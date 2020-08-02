@@ -8,7 +8,7 @@ $(document).ready(function(){
           document.getElementById('occupancy').innerHTML = xhr.responseText;
         }
       };
-      xhr.open('GET', '/increment');
+      xhr.open('GET', 'increment');
     xhr.send();
   });
 
@@ -21,7 +21,7 @@ $(document).ready(function(){
           document.getElementById('occupancy').innerHTML = xhr.responseText;
         }
       };
-      xhr.open('GET', '/decrement');
+      xhr.open('GET', 'decrement');
     xhr.send();
   });
 
