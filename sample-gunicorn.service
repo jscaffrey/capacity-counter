@@ -1,0 +1,18 @@
+#Place in /etc/systemd/system
+#Update with your path to capacity-counter replacing <> below
+
+[Unit]
+Description=gunicorn
+After=network.target
+
+[Service]
+Restart=always
+ExecStart=<YOUR CAPACITY-COUNTER ROOT DIR HERE>/venv/bin/gunicorn app:app
+ExecReload=/bin/kill -s HUP $MAINPID
+WorkingDirectory=<YOUR CAPACITY-COUNTER ROOT DIR HERE>
+Environment=CAPACITYCOUNTER_SETTINGS=<YOUR CAPACITY-COUNTER ROOT DIR HERE>/settings.cfg
+KillMode=mixed
+TimeoutStopSec=5
+
+[Install]
+WantedBy=multi-user.target
