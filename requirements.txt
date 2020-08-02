@@ -1,3 +1,0 @@
-Flask
-Flask-SQLalchemy
-Flask-Migrate
