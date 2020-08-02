@@ -1,12 +1,15 @@
 #Flask application instance
 from flask import Flask
-from config import Config
 from flask_sqlalchemy import SQLAlchemy
 from flask_migrate import Migrate
 
 app = Flask(__name__)
-app.config.from_object(Config)
+
+app.config.from_envvar('CAPACITYCOUNTER_SETTINGS')
 db = SQLAlchemy(app)
 migrate = Migrate(app, db)
 
+
+
 from app import routes, models, occupancy_over_time
+app.cli.add_command(models.add_location)

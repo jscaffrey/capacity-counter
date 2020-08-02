@@ -5,7 +5,7 @@ from flask.cli import with_appcontext
 class Location(db.Model):
     id = db.Column(db.Integer, primary_key=True) 
     name = db.Column(db.String(64), index=True, unique=True)
-    description = db.Column(db.String)
+    description = db.Column(db.String(256))
     occupancy = db.Column(db.Integer)
     capacity = db.Column(db.Integer)
     occupancy_over_time = db.relationship("OccupancyOverTime", back_populates="location")
@@ -24,11 +24,11 @@ class OccupancyOverTime(db.Model):
         confirmation_prompt=True, type=int)
 @click.option('--description', prompt=False)
 @with_appcontext
-def create_admin(name, capacity, description):
+def add_location(name, capacity, description):
     if description is None:
         description = ""
     location = Location(name=name, capacity=capacity,\
             description=description, occupancy=0)
     db.session.add(location)
     db.session.commit()
-    click.echo("Description created.")
+    click.echo("Location created.")
