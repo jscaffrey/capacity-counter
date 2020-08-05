@@ -1,6 +1,7 @@
 #Custom
 *.db
 migrations/
+settings.cfg
 todo.txt
 rem.txt
 # Byte-compiled / optimized / DLL files
