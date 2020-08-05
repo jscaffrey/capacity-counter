@@ -4,17 +4,21 @@
 <div class="row center-align counter-panel">
 <div class="col-md-6 offset-md-3">
   <h1>{{ location.name }}</h1>
+  {% if current_user.is_authenticated %}
   <a id="increment" class="btn btn-primary btn-lg btn-block" role="button">
       &#9650; 
       <span class="sr-only">Increase</span>
   </a>
+  {% endif %}
   <div class="inner-panel">
       <h2 id="occupancy">{{ location.occupancy }}</h2>
       <h3 class="h5">out of {{ location.capacity }}</h3>
   </div>
+  {% if current_user.is_authenticated %}
   <a id="decrement" class="btn btn-primary btn-lg btn-block" role="button">
       &#9660;
       <span class="sr-only">Decrease</span>
   </a>
+  {% endif %}
 </div>
 {% endblock %}

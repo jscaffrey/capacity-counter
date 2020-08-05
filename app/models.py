@@ -1,6 +1,24 @@
-from app import db
+from app import db, login
 import click
+from flask_login import UserMixin
 from flask.cli import with_appcontext
+from werkzeug.security import generate_password_hash, check_password_hash
+
+class User(UserMixin, db.Model):
+
+    __tablename__ = 'users'
+
+    id = db.Column(db.Integer, primary_key=True)
+    name = db.Column(db.String(120), unique=True, nullable=False)
+    username = db.Column(db.String(80), unique=True, nullable=False)
+    admin = db.Column(db.Boolean, nullable=False, default=False)
+    password_hash = db.Column(db.String(128))
+
+    def set_password(self, password):
+        self.password_hash = generate_password_hash(password)
+
+    def check_password(self, password):
+        return check_password_hash(self.password_hash, password)
 
 class Location(db.Model):
     id = db.Column(db.Integer, primary_key=True) 
@@ -17,7 +35,38 @@ class OccupancyOverTime(db.Model):
     location_id = db.Column(db.Integer, db.ForeignKey('location.id'))
     location = db.relationship("Location", back_populates="occupancy_over_time")
 
-#Create a prompt for at least one location entry
+@login.user_loader
+def load_user(id):
+    return User.query.get(int(id))
+
+#Create a command line prompt for creating user
+@click.command("create-user", \
+        help='Creates a user for the capacity counter')
+@click.option('--name', prompt=True)
+@click.option('--username', prompt=True)
+@click.option('--passcode', prompt=True, hide_input=True,\
+        confirmation_prompt=True)
+@with_appcontext
+def create_user(name, username, passcode):
+    user = User(name=name, username=username, passcode=passcode)
+    db.session.add(user)
+    db.session.commit()
+    click.echo("User created.")
+
+#Create a commandline prompt for creating user
+@click.command("create-admin", help='Creates an admin user for the capacity counter')
+@click.option('--name', prompt=True)
+@click.option('--username', prompt=True)
+@click.option('--passcode', prompt=True, hide_input=True,\
+        confirmation_prompt=True)
+@with_appcontext
+def create_admin(name, username, passcode):
+    user = User(name=name, username=usernae, passcode=passcode, admin=True)
+    db.session.add(user)
+    db.session.commit()
+    click.echo("Admin created.")
+
+#Create a command line prompt for a location entry
 @click.command("add-location", help='Adds a location')
 @click.option('--name', prompt=True)
 @click.option('--capacity', prompt=True,
@@ -32,3 +81,4 @@ def add_location(name, capacity, description):
     db.session.add(location)
     db.session.commit()
     click.echo("Location created.")
+
