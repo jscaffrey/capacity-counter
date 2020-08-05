@@ -46,25 +46,14 @@ def load_user(id):
 @click.option('--username', prompt=True)
 @click.option('--passcode', prompt=True, hide_input=True,\
         confirmation_prompt=True)
+@click.option('--admin', default=False, is_flag=True)
 @with_appcontext
-def create_user(name, username, passcode):
-    user = User(name=name, username=username, passcode=passcode)
+def create_user(name, username, passcode, admin):
+    user = User(name=name, username=username, admin=admin)
+    user.set_password(passcode)
     db.session.add(user)
     db.session.commit()
     click.echo("User created.")
-
-#Create a commandline prompt for creating user
-@click.command("create-admin", help='Creates an admin user for the capacity counter')
-@click.option('--name', prompt=True)
-@click.option('--username', prompt=True)
-@click.option('--passcode', prompt=True, hide_input=True,\
-        confirmation_prompt=True)
-@with_appcontext
-def create_admin(name, username, passcode):
-    user = User(name=name, username=usernae, passcode=passcode, admin=True)
-    db.session.add(user)
-    db.session.commit()
-    click.echo("Admin created.")
 
 #Create a command line prompt for a location entry
 @click.command("add-location", help='Adds a location')

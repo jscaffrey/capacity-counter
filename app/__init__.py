@@ -13,6 +13,5 @@ login = LoginManager(app)
 
 
 from app import routes, models, occupancy_over_time
-app.cli.add_command(models.create_admin)
 app.cli.add_command(models.create_user)
 app.cli.add_command(models.add_location)

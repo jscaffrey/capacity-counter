@@ -7,7 +7,6 @@ from app.models import User, Location, OccupancyOverTime
 from app.forms import LoginForm
 
 @app.route('/')
-@app.route('/index')
 def index():
     location_id = request.args.get("id", 1)
     location = Location.query.filter_by(id=location_id).first()
