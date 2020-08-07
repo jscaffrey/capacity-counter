@@ -35,6 +35,12 @@ class OccupancyOverTime(db.Model):
     location_id = db.Column(db.Integer, db.ForeignKey('location.id'))
     location = db.relationship("Location", back_populates="occupancy_over_time")
 
+class Links(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    label = db.Column(db.String(128))
+    url = db.Column(db.String(512))
+    weight = db.Column(db.Integer)
+
 @login.user_loader
 def load_user(id):
     return User.query.get(int(id))
@@ -71,3 +77,16 @@ def add_location(name, capacity, description):
     db.session.commit()
     click.echo("Location created.")
 
+#Create a command line prompt for a link entry
+@click.command("add-link", help='Adds a link to the navigation')
+@click.option('--label', prompt=True)
+@click.option('--url', prompt=True)
+@click.option('--weight', prompt=True)
+@with_appcontext
+def add_link(label, url, weight):
+    if weight is None:
+        weight = ""
+    link = Links(label=label, url=url, weight=weight)
+    db.session.add(link)
+    db.session.commit()
+    click.echo("Link created.")

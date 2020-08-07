@@ -1,18 +1,23 @@
 #Home page route
+import datetime
 from flask import render_template, request, jsonify, url_for,\
-        redirect, flash
+        redirect, flash, render_template_string
 from flask_login import current_user, login_user, logout_user
 from app import app, db
-from app.models import User, Location, OccupancyOverTime
+from app.models import User, Location, OccupancyOverTime, Links
 from app.forms import LoginForm
 
 @app.route('/')
 def index():
     location_id = request.args.get("id", 1)
     location = Location.query.filter_by(id=location_id).first()
-    
-    return render_template('index.html', title='Home', location=location)
-
+    links = Links.query.order_by(Links.weight).all()
+    rendered_links = []
+    for link in links:
+        url = render_template_string(link.url, now=datetime.datetime.now())
+        rendered_links.append((link.label, url))
+    return render_template('index.html', title='Home', location=location, \
+        links=rendered_links)
 
 @app.route('/login', methods=['GET', 'POST'])
 def login():
