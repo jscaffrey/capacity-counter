@@ -9,8 +9,8 @@ app = Flask(__name__)
 app.config.from_envvar('CAPACITYCOUNTER_SETTINGS')
 db = SQLAlchemy(app)
 migrate = Migrate(app, db)
-login = LoginManager(app)
-
+login = LoginManager()
+login.init_app(app)
 
 from app import routes, models, occupancy_over_time
 app.cli.add_command(models.create_user)
