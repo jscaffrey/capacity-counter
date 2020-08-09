@@ -88,6 +88,7 @@ def location():
                 'description': location.description,
                 'occupancy': location.occupancy,
                 'capacity': location.capacity,
+                'percentage': location.occupancy / location.capacity * 100
                 })
     else:
         location = Location.query.filter_by(id=location_id).first()
@@ -98,6 +99,7 @@ def location():
             'description': location.description,
             'occupancy': location.occupancy,
             'capacity': location.capacity,
+            'percentage': location.occupancy / location.capacity * 100
             }
 
     return jsonify(json)
