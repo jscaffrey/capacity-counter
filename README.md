@@ -1,4 +1,6 @@
-![Capacity Counter logo](https://raw.githubusercontent.com/jscaffrey/capacity-counter/main/app/static/images/logo-hero.png)
+<div align="center">
+   <img src="https://raw.githubusercontent.com/jscaffrey/capacity-counter/main/app/static/images/logo-hero.png" alt="" />
+</div>
 
 # Capacity Counter
 Counter for counting visitors in a physical location. Made with love for libraries monitoring indoor occupancy during the global COVID-19 pandemic.
