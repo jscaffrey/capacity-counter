@@ -1,4 +1,4 @@
-![Capacity Counter logo](https://raw.githubusercontent.com/jscaffrey/capacity-counter/app/static/images/logo-hero.png)
+![Capacity Counter logo](https://raw.githubusercontent.com/jscaffrey/capacity-counter/main/app/static/images/logo-hero.png)
 
 # Capacity Counter
 Counter for counting visitors in a physical location. Made with love for libraries monitoring indoor occupancy during the global COVID-19 pandemic.
@@ -20,7 +20,7 @@ Supports data-driven decision making and identifying peak times
 Uses Python 3, Flask, and SQLAlchemy. Can be used with MySQL (or MariaDB) or SQLite.
 
 ## Installation
-### Install Python3
+### 1. Install Python3
 First install Python3. Check if you have Python installed:
 
 ```
@@ -28,29 +28,29 @@ $ python3 -V
 Python 3.8.2
 ```
 
-### Install Capacity Counter
-Next install the app. You'll need `git` installed. If you need a tutorial to get started, I recommend (this Install Git tutorial by Atlassian/Bitbucket)[https://www.atlassian.com/git/tutorials/install-git]
+### 2. Install Capacity Counter
+Next install the app. You'll need `git` installed. If you need a tutorial to get started, I recommend [this Install Git tutorial by Atlassian/Bitbucket](https://www.atlassian.com/git/tutorials/install-git)
 ```
 git clone https://github.com/jscaffrey/capacity-counter.git
 cd capacity-counter
 ```
 
-### Set up your Flask environment
+### 3. Set up your Flask environment
 Enter a virtual environment for Flask.
 ```
 python3 -m venv venv
 source venv/bin/activate
 ```
 You should see: `(venv)` appear. If so, ya done good.
-If you need more information on this step, see the (Flask Mega Tutorial)[https://blog.miguelgrinberg.com/post/the-flask-mega-tutorial-part-i-hello-world]
+If you need more information on this step, see the [Flask Mega Tutorial](https://blog.miguelgrinberg.com/post/the-flask-mega-tutorial-part-i-hello-world)
 
-### Install dependencies
+### 4. Install dependencies
 All dependencies can be added easily using the following:
 ```
 pip3 install .
 ```
 
-### Set environmental variables.
+### 5. Set environmental variables.
 Okay, almost there. A few pesky commands away.
 
 Make a copy of the same settings and change it.
@@ -62,10 +62,12 @@ Make a copy of the same settings and change it.
 
 Next, open `settings.cfg` using your favorite text editor and change the value of `SECRET_KEY` to something secure and long.
 
-### Set up database
+### 6. Set up database
 
 #### Option 1: Use SQLite3
 Install SQLite3 if you haven't already.
+
+Use the configuration example in `sample-settings.cfg`
 
 #### Option 2: Use MySQL/MariaDB
 Install MySQL/MariaDB if you haven't already.
@@ -89,14 +91,15 @@ In `settings.cfg`, update the database information. This includes the password a
 SQLALCHEMY_DATABASE_URI = 'mysql+pysql://capacitycounter:YOURPASSWORD@localhost/capacitycounter
 ```
 
-### Initialize the application
+### 7. Initialize the application
 
 ```
 python3 -m flask db init
 python3 -m flask db migrate
+python4 -m flask db upgrade
 ```
 
-### Serve the application
+### 8. Serve the application
 
 #### Local environment
 For local development / testing, you can use Flask to run the app
@@ -105,14 +108,14 @@ python3 -m flask run
 ```
 
 #### Production (live) environment
-For running it in production, I suggest gunicorn or an Apache modification. At TU we use (gunicorn)[https://pypi.org/project/gunicorn/].
+For running it in production, I suggest gunicorn or an Apache modification. At TU we use [gunicorn](https://pypi.org/project/gunicorn/).
 
-### Add a location
+### 9. Add a location
 
 ```
 python3 -m flask add-location
 ```
-### Make users
+### 10. Make users
 
 ```
 python3 -m flask create-user
