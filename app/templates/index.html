@@ -3,6 +3,7 @@
 {% block content %}
 <div class="row center-align counter-panel">
 <div class="col-md-6 offset-md-3">
+{% if location.name|length %}
   <h1>{{ location.name }}</h1>
   {% if current_user.is_authenticated %}
   <a id="increment" class="btn btn-primary btn-lg btn-block" role="button">
@@ -20,5 +21,9 @@
       <span class="sr-only">Decrease</span>
   </a>
   {% endif %}
+{% else %}
+  <h1>You're up and running.</h1>
+  <p>Add a location to continue.</p>
+{% endif %}
 </div>
 {% endblock %}

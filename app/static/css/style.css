@@ -1,3 +1,7 @@
+/* Header */
+header .logo {
+  height: 50px;
+}
 /* Typography */
 h1 {
   margin-bottom: 4rem;
