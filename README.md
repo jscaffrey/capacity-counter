@@ -16,7 +16,7 @@ Free employees to focus on greeting and reminding of health protocols
 ### Show data on your website using the public API
 Give visitors data to inform their decision whether to visit
 <div align="center" style="margin: 20px;">
-<img src="http://juliacaffrey.com/dist/img/screenshot-occupancy.png" alt="Screencapture of Towson University library website with a section beneath the navigation showing 15 out of 300 visitors" />
+<img src="http://juliacaffrey.com/dist/img/screenshot-occupancy.png" alt="Screencapture of Towson University library website with a section beneath the navigation showing 15 out of 300 visitors" style="height: 450px;" />
 </div>
 
 ### IoT Device Friendly
