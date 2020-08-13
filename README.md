@@ -9,14 +9,22 @@ Counter for counting visitors in a physical location. Made with love for librari
 
 ### Reduce cognitive load on employees
 Free employees to focus on greeting and reminding of health protocols
-
+<img src="http://juliacaffrey.com/dist/img/screencapture.gif" alt="Screencapture of Capacity Counter showing the ability to log in, count using large buttons, and reset the number." />
 ### Show data on your website using the public API
 Give visitors data to inform their decision whether to visit
+<img src="http://juliacaffrey.com/dist/img/screenshot-occupancy.png" alt="Screencapture of Towson University library website with a section beneath the navigation showing 15 out of 300 visitors" />
 
-### Add locations and users from the command line
+### IoT Device Friendly
+If you are using a device for your door count, you can use a GET request to increment "/increment" or decrement "/decrement" as people arrive and depart.
 
+### Add locations, users, and custom links from the command line
+Add a location
+<img src="https://juliacaffrey.com/dist/img/add-location.gif" alt="Add a location using a command in the terminal"/>
+Create a user
+<img src="https://juliacaffrey.com/dist/img/create-user.gif" alt="Create a user using a command in the terminal"/>
+Add a custom link in your navigation.
 ### Takes hourly snapshot of current occupancy
-Supports data-driven decision making and identifying peak times
+Supports data-driven decision making and identifying peak times.
 
 ## Stack
 Uses Python 3, Flask, and SQLAlchemy. Can be used with MySQL (or MariaDB) or SQLite.
@@ -129,7 +137,7 @@ python3 -m flask create-user
 - Display web-based reports
 
 ## Contribute
-Contributions welcome.
+Contributions welcome and open to changing to a community open source model for more rapid development if needed.
 1. Fork it (<https://github.com/jscaffrey/capacity-counter/fork>)
 2. Create your feature branch (`git checkout -b feature/coolThing`)
 3. Commit your changes (`git commit -am 'Add some cool thing'`)
