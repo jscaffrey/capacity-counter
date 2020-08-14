@@ -1,4 +1,5 @@
 #Custom
+*.DS_Store
 *.db
 migrations/
 settings.cfg
