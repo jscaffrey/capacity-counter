@@ -12,7 +12,7 @@ migrate = Migrate(app, db)
 login = LoginManager()
 login.init_app(app)
 
-from app import routes, models, occupancy_over_time
+from app import routes, models, scheduler
 app.cli.add_command(models.create_user)
 app.cli.add_command(models.add_location)
 app.cli.add_command(models.add_link)
