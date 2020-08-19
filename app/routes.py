@@ -82,24 +82,26 @@ def location():
 
         json = []
         for location in locations:
+            percentage_raw = location.occupancy / location.capacity * 100
             json.append({ 
                 'id': location.id,
                 'name': location.name,
                 'description': location.description,
                 'occupancy': location.occupancy,
                 'capacity': location.capacity,
-                'percentage': location.occupancy / location.capacity * 100
+                'percentage': round( percentage_raw, 0 )
                 })
     else:
         location = Location.query.filter_by(id=location_id).first()
-    
+
+        percentage_raw = location.occupancy / location.capacity * 100
         json = { 
             'id': location.id,
             'name': location.name,
             'description': location.description,
             'occupancy': location.occupancy,
             'capacity': location.capacity,
-            'percentage': location.occupancy / location.capacity * 100
+            'percentage': round( percentage_raw, 0 )
             }
 
     return jsonify(json)
