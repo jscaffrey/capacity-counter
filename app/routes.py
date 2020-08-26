@@ -4,7 +4,7 @@ from flask import render_template, request, jsonify, url_for,\
         redirect, flash, render_template_string
 from flask_login import current_user, login_user, logout_user
 from app import app, db
-from app.models import User, Location, OccupancyOverTime, Links
+from app.models import User, Location, OccupancyOverTime, Links, UserSettings
 from app.forms import LoginForm
 
 @app.route('/')

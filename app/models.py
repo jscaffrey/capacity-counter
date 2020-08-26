@@ -2,17 +2,23 @@ from app import db, login
 import click
 from flask_login import UserMixin
 from flask.cli import with_appcontext
+from sqlalchemy import Table, Column, Integer, ForeignKey
+from sqlalchemy.orm import relationship
+from sqlalchemy.ext.declarative import declarative_base
 from werkzeug.security import generate_password_hash, check_password_hash
 
-class User(UserMixin, db.Model):
+Base = declarative_base()
 
-    __tablename__ = 'users'
+class User(UserMixin, db.Model, Base):
 
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(120), unique=True, nullable=False)
     username = db.Column(db.String(80), unique=True, nullable=False)
     admin = db.Column(db.Boolean, nullable=False, default=False)
     password_hash = db.Column(db.String(128))
+    user_settings = relationship("UserSettings",\
+            uselist=False,\
+            back_populates="user")
 
     def set_password(self, password):
         self.password_hash = generate_password_hash(password)
@@ -40,6 +46,14 @@ class Links(db.Model):
     label = db.Column(db.String(128))
     url = db.Column(db.String(512))
     weight = db.Column(db.Integer)
+
+class UserSettings(db.Model, Base):
+    id = db.Column(db.Integer, primary_key=True)
+    dark_mode = db.Column(db.Boolean, nullable=False, default=False)
+    last_activity = db.Column(db.DateTime)
+    on_duty = db.Column(db.Boolean, nullable=False, default=False)
+    user_id = db.Column(db.Integer, db.ForeignKey('user.id'))
+    user = db.relationship("User", back_populates="user_settings")
 
 @login.user_loader
 def load_user(id):
